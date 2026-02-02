@@ -140,6 +140,25 @@ p{
   box-shadow:0 10px 25px rgba(255,77,109,.5);
   z-index:10;
 }
+.music-indicator {
+  position: fixed;
+  bottom: 70px;  /* a bit above the music button */
+  right: 20px;
+  font-size: 0.9rem;
+  color: #ff4d6d;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 0 3px rgba(255, 77, 109, 0.7);
+  animation: pulse 2.5s infinite;
+  z-index: 11;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
 
 /* Footer */
 footer{
@@ -169,6 +188,7 @@ footer{
 <body>
 
 <!-- MUSIC -->
+ <div class="music-indicator">Tap to listen music</div>
 <div class="music-btn" onclick="toggleMusic()">🎶</div>
 <audio id="bgMusic" loop>
   <!-- PLACE YOUR Perfect (Instrumental).mp3 HERE -->
