@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Kinjal ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ffdee9,#fff1f5);
+  color:#333;
+  overflow-x:hidden;
+}
+
+section{padding:80px 20px;text-align:center}
+
+h1,h2{
+  font-family:'Dancing Script',cursive;
+  color:#d6336c;
+}
+
+h1{font-size:3rem}
+h2{font-size:2.2rem;margin-bottom:25px}
+
+p{
+  max-width:720px;
+  margin:auto;
+  font-size:1.1rem;
+  line-height:1.9;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero span{color:#ff4d6d}
+
+.btn{
+  margin-top:30px;
+  padding:14px 34px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:#fff;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,109,.4);
+}
+
+.hidden{display:none}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:floatUp 6s linear infinite;
+  pointer-events:none;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:1}
+  100%{transform:translateY(-110vh) scale(1.6);opacity:0}
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  margin-top:50px;
+}
+
+.card{
+  background:linear-gradient(135deg,#fff0f6,#ffe3ec);
+  padding:30px 20px;
+  border-radius:22px;
+  box-shadow:0 15px 35px rgba(0,0,0,.12);
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s;
+  position:relative;
+}
+
+.card::before{
+  content:"❤️ ❤️ ❤️ ❤️ ❤️";
+  position:absolute;
+  top:-10px;
+  left:-10px;
+  opacity:.08;
+}
+
+.card.show{opacity:1;transform:translateY(0)}
+
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.photo{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  opacity:0;
+  transform:scale(.9);
+  transition:.8s;
+}
+
+.photo.show{opacity:1;transform:scale(1)}
+
+.photo img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+/* Music button */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4d6d;
+  color:#fff;
+  padding:14px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
+  z-index:10;
+}
+
+/* Footer */
+footer{
+  padding:60px 20px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.9rem;
+  color:#d6336c;
+}
+
+#finalSecret{
+  font-size:1.6rem;
+  margin-top:40px;
+  opacity:0;
+  transition:1s;
+}
+
+#finalSecret.show{opacity:1}
+
+@media(max-width:600px){
+  h1{font-size:2.4rem}
+  h2{font-size:1.8rem}
+  p{font-size:1rem}
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<div class="music-btn" onclick="toggleMusic()">🎶</div>
+<audio id="bgMusic" loop>
+  <!-- PLACE YOUR Perfect (Instrumental).mp3 HERE -->
+  <source src="perfect-instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>To the Love of My Life, <span>Kinjal ❤️</span></h1>
+  <p>From 3rd March 2020… to forever.</p>
+  <p>Every day with you feels like a blessing,  
+      but today I wanted to do something a little special… just for you.</p>
+  <button class="btn" onclick="revealLove()">Tap for a Surprise 💖</button>
+</section>
+
+<!-- LOVE LETTER -->
+<section id="loveMessage" class="hidden">
+  <h2>My Love Letter</h2>
+  <p>
+    Kinjal,  
+      You are my calm, my happiness, my best friend, and my forever.  
+      Life feels warmer, brighter, and more beautiful with you by my side. <br/>
+   💕 I still fall for you every single day.💕<br/>
+    💕Thank you for loving me the way you do.💕
+  </p>
+</section>
+
+<!-- COUNTER -->
+<section>
+  <h2>We Have Been Together For 💕</h2>
+  <p id="counter"></p>
+</section>
+
+<!-- JOURNEY -->
+<section>
+  <h2>Our Journey 💖</h2>
+  <p>
+    From strangers to soulmates,  
+    from dreams to forever —  
+    I’d choose you again and again.
+  </p>
+</section>
+
+<!-- PHOTOS -->
+<section>
+  <h2>Love in Every Moment 📸</h2>
+  <div class="gallery">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43"></div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<!-- <section>
+  <h2>Reasons I Love You ❤️</h2>
+  <div class="cards">
+    <div class="card">You chose me every day since March 2020</div>
+    <div class="card">You make love feel easy</div>
+    <div class="card">You understand me without words</div>
+    <div class="card">You are my forever</div>
+  </div>
+</section> -->
+<section>
+  <h2>Reasons I Love You ❤️</h2>
+  <div class="cards">
+    <!-- Romantic -->
+    <div class="card">You chose me every single day since March 2020</div>
+    <div class="card">You make love feel effortless and safe</div>
+    <div class="card">You understand me even when I say nothing</div>
+    <div class="card">You are my home, my peace, my forever</div>
+
+    <!-- Deep -->
+    <div class="card">You stood by me through every high and low</div>
+    <div class="card">You believe in me even when I doubt myself</div>
+    <div class="card">Life feels better just because you’re in it</div>
+
+    <!-- Funny / Cute -->
+    <div class="card">You still love me even when I’m annoying 😌</div>
+    <div class="card">You tolerate my developer mood swings 💻😂</div>
+    <div class="card">You share food with me… most of the time 🍟❤️</div>
+    <div class="card">You’re the only person I’d share my charger with 🔋😄</div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  Happy Valentine’s Day, Kinjal 💖  
+  <br>Forever Yours  
+  <br>— Malay
+  <div id="finalSecret">
+    If you reached here… I’ll love you in every lifetime ❤️
+  </div>
+</footer>
+
+<script>
+function revealLove(){
+  document.getElementById("loveMessage").classList.remove("hidden");
+  document.getElementById("loveMessage").scrollIntoView({behavior:"smooth"});
+}
+
+/* Counter (from 3 March 2020) */
+/* Counter (Years, Months, Days) – From 3 March 2020 */
+const startDate = new Date(2020, 2, 3); // Month is 0-based (March = 2)
+
+function updateCounter() {
+  const today = new Date();
+
+  let years = today.getFullYear() - startDate.getFullYear();
+  let months = today.getMonth() - startDate.getMonth();
+  let days = today.getDate() - startDate.getDate();
+
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  document.getElementById("counter").innerHTML =
+    `${years} years, ${months} months, ${days} days ❤️`;
+}
+
+updateCounter();
+
+
+/* Floating hearts */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+14)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},450);
+
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("show");
+  });
+},{threshold:.2});
+
+document.querySelectorAll(".card,.photo").forEach(el=>observer.observe(el));
+
+/* Final secret */
+window.addEventListener("scroll",()=>{
+  if(window.innerHeight+window.scrollY>=document.body.offsetHeight-50){
+    document.getElementById("finalSecret").classList.add("show");
+  }
+});
+
+/* Music toggle */
+let playing=false;
+function toggleMusic(){
+  const m=document.getElementById("bgMusic");
+  playing?m.pause():m.play();
+  playing=!playing;
+}
+
+/* Heart burst */
+document.addEventListener("click",e=>{
+  for(let i=0;i<6;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=e.clientX+"px";
+    h.style.top=e.clientY+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
+  }
+});
+</script>
+
+</body>
+</html>
