@@ -71,58 +71,6 @@ p{
   100%{transform:translateY(-110vh) scale(1.6);opacity:0}
 }
 
-/* ===== SLIDER ===== */
-
-.slider{
-  position:relative;
-  max-width:750px;
-  margin:40px auto;
-  overflow:hidden;
-  border-radius:20px;
-  box-shadow:0 15px 35px rgba(0,0,0,.2);
-  background:#fff;
-}
-
-.slide{
-  width:100%;
-  height:500px;          /* Fixed same height for all */
-  object-fit:cover;      /* Prevents distortion */
-  object-position:center;/* Keeps focus centered */
-  display:none;
-  animation:fade 1s ease-in-out;
-  background:#000;       /* Fills empty space nicely */
-}
-
-.slide.active{
-  display:block;
-}
-
-@keyframes fade{
-  from{opacity:.4}
-  to{opacity:1}
-}
-
-.prev, .next{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,.4);
-  color:#fff;
-  border:none;
-  padding:10px 16px;
-  cursor:pointer;
-  font-size:22px;
-  border-radius:50%;
-  z-index:5;
-}
-
-.prev{left:15px;}
-.next{right:15px;}
-
-.prev:hover, .next:hover{
-  background:#ff4d6d;
-}
-
 /* Cards */
 .cards{
   display:grid;
@@ -139,11 +87,46 @@ p{
   opacity:0;
   transform:translateY(40px);
   transition:.8s;
+  position:relative;
+}
+
+.card::before{
+  content:"❤️ ❤️ ❤️ ❤️ ❤️";
+  position:absolute;
+  top:-10px;
+  left:-10px;
+  opacity:.08;
 }
 
 .card.show{opacity:1;transform:translateY(0)}
 
-/* Music */
+/* Gallery */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.photo{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.12);
+  opacity:0;
+  transform:scale(.9);
+  transition:.8s;
+}
+
+.photo.show{opacity:1;transform:scale(1)}
+
+.photo img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+/* Music button */
 .music-btn{
   position:fixed;
   bottom:20px;
@@ -157,15 +140,19 @@ p{
   box-shadow:0 10px 25px rgba(255,77,109,.5);
   z-index:10;
 }
-
 .music-indicator {
   position: fixed;
-  bottom: 70px;
+  bottom: 70px;  /* a bit above the music button */
   right: 20px;
   font-size: 0.9rem;
   color: #ff4d6d;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  user-select: none;
+  pointer-events: none;
+  text-shadow: 0 0 3px rgba(255, 77, 109, 0.7);
   animation: pulse 2.5s infinite;
+  z-index: 11;
 }
 
 @keyframes pulse {
@@ -193,19 +180,22 @@ footer{
 @media(max-width:600px){
   h1{font-size:2.4rem}
   h2{font-size:1.8rem}
-  .slide{height:350px}
+  p{font-size:1rem}
 }
 </style>
 </head>
 
 <body>
 
-<div class="music-indicator">Tap to listen music</div>
+<!-- MUSIC -->
+ <div class="music-indicator">Tap to listen music</div>
 <div class="music-btn" onclick="toggleMusic()">🎶</div>
 <audio id="bgMusic" loop>
+  <!-- PLACE YOUR Perfect (Instrumental).mp3 HERE -->
   <source src="perfect-instrumental.mp3" type="audio/mpeg">
 </audio>
 
+<!-- HERO -->
 <section class="hero">
   <h1>To the Love of My Life, <span>Kinjal ❤️</span></h1>
   <p>From 3rd March 2020… to forever.</p>
@@ -214,61 +204,69 @@ footer{
   <button class="btn" onclick="revealLove()">Tap for a Surprise 💖</button>
 </section>
 
+<!-- LOVE LETTER -->
 <section id="loveMessage" class="hidden">
   <h2>My Love Letter</h2>
   <p>
     Kinjal,  
-    You are my calm, my happiness, my best friend, and my forever.  
-    Life feels warmer, brighter, and more beautiful with you by my side. <br/>
-    💕 I still fall for you every single day.💕<br/>
+      You are my calm, my happiness, my best friend, and my forever.  
+      Life feels warmer, brighter, and more beautiful with you by my side. <br/>
+   💕 I still fall for you every single day.💕<br/>
     💕Thank you for loving me the way you do.💕
   </p>
 </section>
 
+<!-- COUNTER -->
 <section>
   <h2>We Have Been Together For 💕</h2>
   <p id="counter"></p>
 </section>
 
-<!-- SLIDER SECTION -->
+<!-- JOURNEY -->
+<section>
+  <h2>Our Journey 💖</h2>
+  <p>
+    From strangers to soulmates,  
+    from dreams to forever —  
+    I’d choose you again and again.
+  </p>
+</section>
+
+<!-- PHOTOS -->
 <section>
   <h2>Love in Every Moment 📸</h2>
-
-  <div class="slider">
-    <button class="prev" onclick="changeSlide(-1)">❮</button>
-
-    <img src="photos/image1.jpeg" class="slide active">
-    <img src="photos/image2.jpeg" class="slide">
-    <img src="photos/image3.jpeg" class="slide">
-    <img src="photos/image4.jpeg" class="slide">
-    <img src="photos/image5.jpeg" class="slide">
-    <img src="photos/image6.jpeg" class="slide">
-    <img src="photos/image7.jpeg" class="slide">
-    <img src="photos/image8.jpeg" class="slide">
-    <img src="photos/image9.jpeg" class="slide">
-    <img src="photos/image10.jpeg" class="slide">
-    <img src="photos/image11.jpeg" class="slide">
-    <img src="photos/image12.jpeg" class="slide">
-    <img src="photos/image13.jpeg" class="slide">
-    <img src="photos/image14.jpeg" class="slide">
-    <img src="photos/image15.jpeg" class="slide">
-    <img src="photos/image16.jpeg" class="slide">
-    <img src="photos/image17.jpeg" class="slide">
-
-    <button class="next" onclick="changeSlide(1)">❯</button>
+  <div class="gallery">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9"></div>
+    <div class="photo"><img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43"></div>
   </div>
 </section>
 
+<!-- REASONS -->
+<!-- <section>
+  <h2>Reasons I Love You ❤️</h2>
+  <div class="cards">
+    <div class="card">You chose me every day since March 2020</div>
+    <div class="card">You make love feel easy</div>
+    <div class="card">You understand me without words</div>
+    <div class="card">You are my forever</div>
+  </div>
+</section> -->
 <section>
   <h2>Reasons I Love You ❤️</h2>
   <div class="cards">
+    <!-- Romantic -->
     <div class="card">You chose me every single day since March 2020</div>
     <div class="card">You make love feel effortless and safe</div>
     <div class="card">You understand me even when I say nothing</div>
     <div class="card">You are my home, my peace, my forever</div>
+
+    <!-- Deep -->
     <div class="card">You stood by me through every high and low</div>
     <div class="card">You believe in me even when I doubt myself</div>
     <div class="card">Life feels better just because you’re in it</div>
+
+    <!-- Funny / Cute -->
     <div class="card">You still love me even when I’m annoying 😌</div>
     <div class="card">You tolerate my developer mood swings 💻😂</div>
     <div class="card">You share food with me… most of the time 🍟❤️</div>
@@ -276,6 +274,8 @@ footer{
   </div>
 </section>
 
+
+<!-- FOOTER -->
 <footer>
   Happy Valentine’s Day, Kinjal 💖  
   <br>Forever Yours  
@@ -286,17 +286,18 @@ footer{
 </footer>
 
 <script>
-
-/* Reveal Love Letter */
 function revealLove(){
   document.getElementById("loveMessage").classList.remove("hidden");
   document.getElementById("loveMessage").scrollIntoView({behavior:"smooth"});
 }
 
-/* Counter */
-const startDate = new Date(2020, 2, 3);
+/* Counter (from 3 March 2020) */
+/* Counter (Years, Months, Days) – From 3 March 2020 */
+const startDate = new Date(2020, 2, 3); // Month is 0-based (March = 2)
+
 function updateCounter() {
   const today = new Date();
+
   let years = today.getFullYear() - startDate.getFullYear();
   let months = today.getMonth() - startDate.getMonth();
   let days = today.getDate() - startDate.getDate();
@@ -315,35 +316,38 @@ function updateCounter() {
   document.getElementById("counter").innerHTML =
     `${years} years, ${months} months, ${days} days ❤️`;
 }
+
 updateCounter();
 
-/* Slider */
-let currentSlide = 0;
-const slides = document.querySelectorAll(".slide");
 
-function showSlide(index){
-  slides.forEach(slide => slide.classList.remove("active"));
-
-  if(index >= slides.length){
-    currentSlide = 0;
-  } else if(index < 0){
-    currentSlide = slides.length - 1;
-  } else {
-    currentSlide = index;
-  }
-
-  slides[currentSlide].classList.add("active");
-}
-
-function changeSlide(step){
-  showSlide(currentSlide + step);
-}
-
+/* Floating hearts */
 setInterval(()=>{
-  showSlide(currentSlide + 1);
-},4000);
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerText="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(Math.random()*20+14)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},450);
 
-/* Music */
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("show");
+  });
+},{threshold:.2});
+
+document.querySelectorAll(".card,.photo").forEach(el=>observer.observe(el));
+
+/* Final secret */
+window.addEventListener("scroll",()=>{
+  if(window.innerHeight+window.scrollY>=document.body.offsetHeight-50){
+    document.getElementById("finalSecret").classList.add("show");
+  }
+});
+
+/* Music toggle */
 let playing=false;
 function toggleMusic(){
   const m=document.getElementById("bgMusic");
@@ -351,6 +355,18 @@ function toggleMusic(){
   playing=!playing;
 }
 
+/* Heart burst */
+document.addEventListener("click",e=>{
+  for(let i=0;i<6;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=e.clientX+"px";
+    h.style.top=e.clientY+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
+  }
+});
 </script>
 
 </body>
